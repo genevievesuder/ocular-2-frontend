@@ -6,7 +6,7 @@ const Dictionary = () => {
   const [dictionaryData, setDictionaryData] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/definitions")
+    fetch("/definitions")
      .then(res => res.json())
      .then(setDictionaryData)
      .catch(err => alert(err))

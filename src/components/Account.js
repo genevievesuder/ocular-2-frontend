@@ -1,10 +1,12 @@
 import Login from "./Login"
 import Signup from "./Signup"
 import UserHome from "./UserHome"
-import {useState} from 'react'
+import {useState, useContext} from 'react';
+import { UserContext } from '../context/UserContext';
 
-const Account = ({user, setUser}) => {
+const Account = () => {
   const [toggleAuth, setToggleAuth] = useState(false)
+  const {user, setUser} = useContext(UserContext)
 
   if (!user) {
     return (

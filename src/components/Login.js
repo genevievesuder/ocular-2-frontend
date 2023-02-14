@@ -1,4 +1,4 @@
-// import {useState, useEffect} from 'react';
+import { useState, useContext } from 'react'
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
@@ -7,29 +7,29 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
+import { UserContext } from '../context/UserContext';
 
-
-const Login = ({setToggleAuth, setUser}) => {
-
+const Login = ({setToggleAuth}) => {
+  const {handleLogin} = useContext(UserContext)
   let welcomeMsgs = ["hi", "we missed you", "hope you're doing well", "glad to see you again", "you look great today", "let's learn something new today", "you came to the right place", "hi, there", "happy learning!"]
   let welcomeMsg = welcomeMsgs[Math.floor(Math.random()*welcomeMsgs.length)];
 
-    // const [user, setUserObj] = useState({
-    //     email: "",
-    //     password: "",
-    // });
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
 
-    // const handleChange = ({target: {name, value}}) => {
-    //     setUserObj(currentUser => ({
-    //         ...currentUser,
-    //         [name]: value
-    //     }))
-    // }
+    const handleChange = ({target: {name, value}}) => {
+        setFormData(currentUser => ({
+            ...currentUser,
+            [name]: value
+        }))
+    }
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()
     //     console.log(user)
-    //     fetch("http://localhost:9393/login",{
+    //     fetch("/login", {
     //       method: "POST",
     //       headers: {
     //         "Content-Type": "application/json"
@@ -39,11 +39,11 @@ const Login = ({setToggleAuth, setUser}) => {
     //     .then(resp => {
     //       if (resp.ok) {
     //         resp.json().then(userObj => {
-    //           setCurrentUser(userObj.user)
-    //           setMessage("User successfully logged in!")
+    //           setUser(userObj.user)
+    //           alert("User successfully logged in!")
     //         })
     //       } else {
-    //         resp.json().then(messageObj => setMessage(messageObj.message))
+    //         resp.json().then(messageObj => alert(messageObj.message))
     //       }
     //     })
     // }
@@ -72,8 +72,7 @@ const Login = ({setToggleAuth, setUser}) => {
             </Typography>
             <Typography level="body2">✦{welcomeMsg}✦<br/><br/>Sign in to continue</Typography>
           </div>
-          <form>
-          {/* NEED TO ADD THIS TO FORM --> onSubmit={handleSubmit} */}
+          <form onSubmit={(e) => handleLogin(e, formData)}>
             <FormControl>
                 <FormLabel>Email</FormLabel>
                 <Input
@@ -81,8 +80,8 @@ const Login = ({setToggleAuth, setUser}) => {
                 name="email"
                 type="email"
                 placeholder="johndoe@email.com"
-                // onChange={handleChange}
-                // value={user.email}
+                onChange={handleChange}
+                value={formData.email}
                 />
             </FormControl>
             <FormControl>
@@ -92,8 +91,8 @@ const Login = ({setToggleAuth, setUser}) => {
                 name="password"
                 type="password"
                 placeholder="password"
-                // onChange={handleChange}
-                // value={user.password}
+                onChange={handleChange}
+                value={formData.password}
                 />
             </FormControl>
             <Button type="submit" sx={{ mt: 1 /* margin top */ }}>Log in</Button>

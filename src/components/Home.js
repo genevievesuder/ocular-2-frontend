@@ -7,7 +7,7 @@ const Home = () => {
     <img className="backdrop-img" src={process.env.PUBLIC_URL+"/backdrop.png"} alt="backdrop"/>
         <div className="welcome-container">
             <span className="welcome">o c u l a r</span><br/>
-            <p className="welcome-subheader">your new optometry companion</p>
+            <p className="welcome-subheader">your new eye-care companion</p>
         </div>
     </div>
   )
