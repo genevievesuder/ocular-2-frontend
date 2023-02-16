@@ -42,8 +42,8 @@ const Forum = () => {
           <div className="post-search-div">
           <input 
               className="post-search" 
-              name="search"
-              type="search"
+              name="search" //necessary?
+              type="search" //necessary?
               value={searchPosts}
               placeholder="Search posts by keyword 🔎"
               onChange={handleSearch}

@@ -47,7 +47,7 @@ export const NewPostForm = ({posts, setPosts}) => {
             ...currentPost,
             [name]: value
         }))
-    }
+      }
   return (
     <div>
       <form className="new-post-form" onSubmit={submitPost}>

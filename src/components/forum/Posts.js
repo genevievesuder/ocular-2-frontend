@@ -1,11 +1,19 @@
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 
 const Posts = ({title, content, creator, image, id, setPosts}) => {
     const {user} = useContext(UserContext)
     const [comments, setComments] = useState(false)
+    const [editForm, setEditForm] = useState(false)
 
+    const [editedPost, setEditedPost] = useState({
+        // user_id: "", Not needed because of Post controller, right?
+        title: "",
+        content: ""
+        // image:""
+    })
     const showComments = () => {
         setComments(currentValue => !currentValue)
     }
@@ -32,9 +40,51 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
             }        
             }) 
         }
+
+
     //edit post
 
-    // const editPost = () => {
+    const editPost = (e) => {
+        e.preventDefault()
+        fetch(`/posts/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(editedPost)
+        })
+           .then(res => {
+            if (res.status !== 200) {
+              res.json()
+              .then(messageObj => alert(messageObj.errors))
+            } else {
+              alert("Post updated successfully");
+              res.json()
+              .then(editedPost => setPosts(currentPosts =>
+                [editedPost, ...currentPosts]))
+              setEditedPost({
+                // user_id: "",
+                title: "",
+                content: ""
+                // image:""
+              })
+            }
+           })
+           //This is not showing my custom validation errors I built
+          // .catch(error => alert(error)) Do I need this line??
+      }
+
+      
+      const handleChange = ({target: {name, value}}) => {
+        setEditedPost(currentPost => ({ 
+            ...currentPost,
+            [name]: value
+        }))
+      }
+
+      const handleSetEditForm = () => {
+        setEditForm(currentValue => !currentValue)
+      }
 
   return (
       <div className="post-card">
@@ -44,10 +94,43 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
             </div>
         {creator === user.username ? (  
             <>
-            <button style={{ float: 'right', lineHeight : 1}}>edit</button>
+            <button onClick={handleSetEditForm} style={{ float: 'right', lineHeight : 1}}>edit</button>
             <button onClick={deletePost} style={{ float: 'right', lineHeight : 1}}>remove</button>
             </>
         ): null}
+    { editForm? (
+        <div>
+        <form className="edit-post-form" onSubmit={editPost}>
+            {/* <input 
+                onChange={handleChange}
+                name=""
+                type=""
+                value=""
+                placeholder=""
+            ></input><br/> */}
+                <input 
+                onChange={handleChange}
+                name="title"
+                type="text"
+                value={editedPost.title}
+                placeholder="Title"
+            ></input><br/>
+            <TextareaAutosize
+                aria-label="empty textarea"
+                minRows={3}
+                maxRows={5}
+                placeholder="Start writing..."
+                onChange={handleChange}
+                name="content"
+                type="text"
+                value={editedPost.content}
+                style={{ width: 200 }}
+            /><br/>
+                <button>Publish</button>
+        </form>
+        </div> 
+    ) : null}
+
            <br/> 
            <div>
                <span className="post-title">{title}</span>
