@@ -2,7 +2,7 @@ import Login from "./Login"
 import Signup from "./Signup"
 import UserHome from "./UserHome"
 import {useState, useContext} from 'react';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 const Account = () => {
   const [toggleAuth, setToggleAuth] = useState(false)
@@ -10,7 +10,7 @@ const Account = () => {
 
   if (!user) {
     return (
-      toggleAuth && <Login setUser={setUser} setToggleAuth={setToggleAuth}/>) || (<Signup setUser={setUser} setToggleAuth={setToggleAuth}/>)
+      toggleAuth && <Login setToggleAuth={setToggleAuth}/>) || (<Signup setToggleAuth={setToggleAuth}/>)
   }
 
   return (

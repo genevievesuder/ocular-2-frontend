@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import {useState, useContext} from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
@@ -7,16 +7,17 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
-const Login = ({setToggleAuth}) => {
-  const {handleLogin} = useContext(UserContext)
-  let welcomeMsgs = ["hi", "we missed you", "hope you're doing well", "glad to see you again", "you look great today", "let's learn something new today", "you came to the right place", "hi, there", "happy learning!"]
-  let welcomeMsg = welcomeMsgs[Math.floor(Math.random()*welcomeMsgs.length)];
 
+
+const Signup = ({setToggleAuth}) => {
+    const {handleSignup} = useContext(UserContext)
     const [formData, setFormData] = useState({
+        username: "",
         email: "",
         password: "",
+        password_confirmation: ""
     });
 
     const handleChange = ({target: {name, value}}) => {
@@ -26,27 +27,6 @@ const Login = ({setToggleAuth}) => {
         }))
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     console.log(user)
-    //     fetch("/login", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       },
-    //       body: JSON.stringify(user)
-    //     })
-    //     .then(resp => {
-    //       if (resp.ok) {
-    //         resp.json().then(userObj => {
-    //           setUser(userObj.user)
-    //           alert("User successfully logged in!")
-    //         })
-    //       } else {
-    //         resp.json().then(messageObj => alert(messageObj.message))
-    //       }
-    //     })
-    // }
 
   return (
     <CssVarsProvider>
@@ -68,11 +48,22 @@ const Login = ({setToggleAuth}) => {
         >
           <div>
             <Typography level="h4" component="h1">
-              <b className="login-welcome">Welcome back</b>
+              <b className="login-welcome">Welcome</b>
             </Typography>
-            <Typography level="body2">✦{welcomeMsg}✦<br/><br/>Sign in to continue</Typography>
+            <Typography level="body2">Sign up & join our growing community</Typography>
           </div>
-          <form onSubmit={(e) => handleLogin(e, formData)}>
+          <form onSubmit={(e) => handleSignup(e, formData)}>
+            <FormControl>
+                <FormLabel>Username</FormLabel>
+                <Input
+                // html input attribute
+                name="username"
+                type="username"
+                placeholder="johndoe"
+                onChange={handleChange}
+                value={formData.username}
+                />
+            </FormControl>
             <FormControl>
                 <FormLabel>Email</FormLabel>
                 <Input
@@ -95,14 +86,26 @@ const Login = ({setToggleAuth}) => {
                 value={formData.password}
                 />
             </FormControl>
-            <Button type="submit" sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+            <FormControl>
+                <FormLabel>Password Confirmation</FormLabel>
+                <Input
+                // html input attribute
+                name="password_confirmation"
+                type="password"
+                placeholder="password"
+                onChange={handleChange}
+                value={formData.password_confirmation}
+                />
+            </FormControl>
+
+            <Button type="submit" sx={{ mt: 1 /* margin top */ }}>Sign Up</Button>
             </form>
           <Typography
-            endDecorator={<Link onClick={() => setToggleAuth(currentVal => !currentVal)}>Sign up</Link>}
+            endDecorator={<Link onClick={() => setToggleAuth(currentVal => !currentVal)}>Sign in</Link>}
             fontSize="sm"
             sx={{ alignSelf: 'center' }}
           >
-            Don&apos;t have an account?
+            Already have an account?
           </Typography>
         </Sheet>
       </main>
@@ -110,4 +113,4 @@ const Login = ({setToggleAuth}) => {
   );
 }
 
-export default Login;
+export default Signup;

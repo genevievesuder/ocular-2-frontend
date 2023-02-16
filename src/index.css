@@ -29,6 +29,27 @@ body {
   text-decoration: none;
 }
 
+.logout{
+  /* min-width: 12vw; */
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Quicksand', sans-serif;
+  border: 5px solid rgba(0, 0, 255, 0);
+  display: block;
+  padding: 0 32px;
+  line-height: 80px;
+  min-width: 12vw;
+  /* text-decoration: none;  */
+  color: black;
+  /* border-radius: 20px; */
+}
+
+.logout:hover{
+  font-size: 20px;
+  color: white;
+  background-color: #FFB03A;
+}
+
 a:link {
   display: block;
   padding: 0 20px;
@@ -48,13 +69,11 @@ a:hover {
   text-decoration: none;
   background-color: #FFB03A;
 }
+
 a:active { 
   text-decoration: none; 
-  background-color: #FFB03A;
+  background-color: #b46c00;
 }
-
-
-
 
 .home-background{
   min-width: 100vw;
@@ -92,15 +111,6 @@ a:active {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
-/* 
-.welcome-container{
-  height: 40vh;
-  width: 100vw;
-  text-align: center;
-  background-color: white;
-  padding: 15vh;
-} */
 
 .welcome{
   font-family: 'Poller One', cursive;
@@ -241,8 +251,17 @@ a:active {
   border-radius: 25px;
 }
 
+.new-post{
+  margin: 2vh;
+  text-align: center;
+  height: 3vh;
+  width: 20vw;
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 25px;
+}
+
 .post-container{
-  display: inline-block;
+  /* display: inline-block; */
   margin: auto;
   min-width: 75vw;
   max-width: 75vw;
@@ -260,6 +279,10 @@ a:active {
   width: 70vw;
   text-align: center;
 }
+.post-header{
+  width: 100%;
+  text-align: center;
+}
 
 .post-author{
   float: left;
@@ -267,11 +290,26 @@ a:active {
 }
 
 .post-title{
-  display: inline-block;
+  /* display: inline-block; */
+  text-align: center;
   font-size: 25px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
   border: 2px solid black;
 }
+
+.post-img-div{
+  display: inline-block;
+  border: solid black 5px;
+  margin-top: 3vh;
+  background-color: white;
+  /* height: 60vh; */
+  width: 100%;
+  text-align: center;
+  object-fit: contain;
+  /* overflow: hidden; */
+}
+
+
 
 .post-content{
   display: inline-block;
@@ -345,6 +383,9 @@ a:active {
   border: none;
 }
 
-.favorite:hover{
-  cursor: pointer;
+.un-favorite{
+  filter: invert(50%);
+  position: absolute;
+  background-color: transparent;
+  border: none;
 }

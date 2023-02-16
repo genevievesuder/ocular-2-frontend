@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Nav from './components/Nav';
-import Home from './components/Home';
-import Account from './components/Account';
-import Dictionary from './components/Dictionary';
-import Anatomy from './components/Anatomy';
-import Forum from './components/Forum';
-
+import Nav from './components/main/Nav';
+import Home from './components/main/Home';
+import Account from './components/user/Account';
+import Dictionary from './components/dictionary/Dictionary';
+import Anatomy from './components/anatomy/Anatomy';
+import Forum from './components/forum/Forum';
+import UserHome from './components/user/UserHome';
 
 function App() {
-
 
   return (
     <div className="app">
@@ -20,6 +18,7 @@ function App() {
           <Route path="/dictionary" element={<Dictionary />} />
           <Route path="/anatomy" element={<Anatomy/>} />
           <Route path="/forum" element={<Forum/>} />
+          <Route path="/userhome" element={<UserHome/>} />
         </Routes>
     </div>
   );
