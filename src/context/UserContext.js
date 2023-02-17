@@ -97,7 +97,6 @@ const UserProvider = ({children}) => {
         }        
       }) 
     }
-//// trying a patch
 
 const editUser = (e, editedUserData, setEditedUserData) => {
   e.preventDefault()
@@ -115,6 +114,7 @@ const editUser = (e, editedUserData, setEditedUserData) => {
         .then(messageObj => alert(messageObj.errors))
       } else {
         alert("Your profile has been updated successfully!");
+        navigate("/userhome")
         res.json()
         .then(setUser(editedUserData))
         setEditedUserData({
@@ -125,12 +125,6 @@ const editUser = (e, editedUserData, setEditedUserData) => {
   })
 }
 
-
-
-
-
-
-/////
     return (
         <UserContext.Provider value={{user, setUser, handleLogin, handleLogout, handleSignup, handleAccountDeletion, editUser}}>
             {children}

@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
-const UserHome = () => {
-
+const UserHome = ({icon, setIcon}) => {
   const navigate = useNavigate()
-  const {user, setUser, handleAccountDeletion} = useContext(UserContext)
-  console.log(user.education)
+  const {user, setUser} = useContext(UserContext)
+  console.log(user)
+  
 const mappedUserFaves = user.favorites.map((fave) => <UserFavorites {...fave} term={fave.term} definition={fave.definition} key={fave.id}/>); 
 
 const handleGoToSettings = () => {
   navigate("/settings")
 }
 
+if (!user) return <h1>...loading</h1>
 return (
     <div className="user-container">
       <div className="welcome-user">
@@ -24,7 +24,7 @@ return (
         <button onClick={handleGoToSettings}>Account Settings</button>
           </div>   
             <div className="user-header">
-              <p className="username">{user.username}✳</p><br/>
+              <p className="username">{user.username}{icon}</p><br/>
             { user.education !== null ? (
               <div>
                 {/* <strong>School - </strong> */}

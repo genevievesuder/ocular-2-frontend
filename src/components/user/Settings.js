@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '../../context/UserContext';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
+import Icon from './Icon'
 
-
-const Settings = () => {
+const Settings = ({icon, setIcon}) => {
     const {user, setUser, handleAccountDeletion, editUser} = useContext(UserContext)
     
+
     const [editedUserData, setEditedUserData] = useState({
         username: "",
         about: "",
@@ -20,33 +21,11 @@ const Settings = () => {
             [name]: value
         }))
       }
+
+ 
   return (
     <div>
-        {/* <label>
-         <strong>Select a profile icon</strong>
-          <select>
-            <option value="">✳</option>
-            <option value="">✴</option>
-            <option value="">✧</option>
-            <option value="">✤</option>
-            <option value="">✪</option>
-            <option value="">✦</option>
-            <option value="">✿</option>
-            <option value="">❀</option>
-            <option value="">❂</option>
-            <option value="">❄</option>
-            <option value="">❤</option>
-            <option value="">♡</option>
-            <option value="">♻</option>
-            <option value="">✈</option>
-
-            <option value="">❄</option>
-            <option value="">❤</option>
-            <option value="">♡</option>
-            <option value="">♻</option>
-            <option value="">✈</option>
-          </select>
-         </label> */}
+        <Icon icon={icon} setIcon={setIcon}/>
         <form className="edit-user-form" onSubmit={(e) => editUser(e, editedUserData, setEditedUserData)}>
             {/* <label>Edit password</label>
             <input 
