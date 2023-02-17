@@ -16,7 +16,7 @@ const Dictionary = () => {
 
   const filteredDefs = dictionaryData.filter(def => def.term.toLowerCase().includes(searchDefs.toLowerCase()) || def.definition.toLowerCase().includes(searchDefs.toLowerCase()) || def.category.toLowerCase().includes(searchDefs.toLowerCase()));
 
-  const categoryFilteredDefs = filteredDefs.filter(def => def.category === categoryFilter)
+  const categoryFilteredDefs = filteredDefs.filter(def => categoryFilter === "All" || def.category === categoryFilter)
   
   const mappedandFilteredDefinitions = categoryFilteredDefs.map(def => <Definitions {...def} key={def.id} />);
 

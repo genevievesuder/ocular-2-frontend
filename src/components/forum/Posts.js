@@ -9,16 +9,14 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
     const [editForm, setEditForm] = useState(false)
 
     const [editedPost, setEditedPost] = useState({
-        // user_id: "", Not needed because of Post controller, right?
         title: "",
         content: ""
         // image:""
     })
+
     const showComments = () => {
         setComments(currentValue => !currentValue)
     }
-
-    //delete post
 
     const deletePost = () => {
         fetch(`/posts/${id}`, {
@@ -27,22 +25,15 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
             .then((r) => { 
             if (r.status === 204) {
                 console.log("Post removed")
-                // setPosts((currentPosts) => (
-                //     {
-                //     ...currentPosts, 
-                //     posts: [
-                //         ...currentPosts.filter(p => p.id !== id)
-                //     ]
-                //     }))
+                setPosts((currentPosts) => {
+                return currentPosts.filter(p => p.id !== id)
+                })
             } else {
                 r.json()
                 .then(err => alert(err))
             }        
-            }) 
-        }
-
-
-    //edit post
+        }) 
+    }
 
     const editPost = (e) => {
         e.preventDefault()
@@ -60,20 +51,18 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
             } else {
               alert("Post updated successfully");
               res.json()
-              .then(editedPost => setPosts(currentPosts =>
-                [editedPost, ...currentPosts]))
+              .then(editedPost => setPosts(currentPosts => {
+                const index = currentPosts.findIndex(post => post.id === editedPost.id)
+                return [...currentPosts.slice(0, index), editedPost, ...currentPosts.slice(index + 1)]}))
+              setEditForm(false)
               setEditedPost({
-                // user_id: "",
                 title: "",
                 content: ""
                 // image:""
               })
             }
            })
-           //This is not showing my custom validation errors I built
-          // .catch(error => alert(error)) Do I need this line??
       }
-
       
       const handleChange = ({target: {name, value}}) => {
         setEditedPost(currentPost => ({ 
@@ -85,7 +74,7 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
       const handleSetEditForm = () => {
         setEditForm(currentValue => !currentValue)
       }
-
+    if (!user) return <h1>...loading</h1>
   return (
       <div className="post-card">
         <div className="post-header">

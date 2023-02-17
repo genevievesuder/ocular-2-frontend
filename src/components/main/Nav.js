@@ -1,17 +1,23 @@
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext';
 
 const Nav = () => {
+    const navigate = useNavigate()
     const {handleLogout, user} = useContext(UserContext)
     const [open, setOpen] = useState(false)
     
     function toggleDrawer(){
         setOpen(!open)
+    }
+
+    const handlePleaseLogin = () => {
+        alert('Please login to access the Community Forum :)')
+        navigate("/account")
     }
 
     return (
@@ -32,7 +38,9 @@ const Nav = () => {
                 )}
                 <Link to="/dictionary">Dictionary</Link><br/>
                 <Link to="/anatomy">Anatomy</Link><br/>
+                { user ? (
                 <Link to="/forum">Forum</Link>
+                ) : <button onClick={handlePleaseLogin} className="community-auth-halt">Community</button> }
                 </nav>
             </Drawer>
         </div>

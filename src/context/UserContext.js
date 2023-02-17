@@ -82,8 +82,57 @@ const UserProvider = ({children}) => {
       // .catch(error => alert(error)) Dont need this line, right?
   }
 
+  const handleAccountDeletion = () => {
+    fetch(`/users/${user.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => { 
+        if (r.status === 204) {
+          setUser(null)
+          alert("Account deleted")
+          navigate("/")
+        } else {
+          r.json()
+          .then(err => alert(err))
+        }        
+      }) 
+    }
+//// trying a patch
+
+const editUser = (e, editedUserData, setEditedUserData) => {
+  e.preventDefault()
+  console.log(editedUserData)
+  fetch(`/users/${user.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(editedUserData)
+  })
+     .then(res => {
+      if (res.status !== 200) {
+        res.json()
+        .then(messageObj => alert(messageObj.errors))
+      } else {
+        alert("Your profile has been updated successfully!");
+        res.json()
+        .then(setUser(editedUserData))
+        setEditedUserData({
+          username: "",
+          about: ""
+        })
+      }
+  })
+}
+
+
+
+
+
+
+/////
     return (
-        <UserContext.Provider value={{user, setUser, handleLogin, handleLogout, handleSignup}}>
+        <UserContext.Provider value={{user, setUser, handleLogin, handleLogout, handleSignup, handleAccountDeletion, editUser}}>
             {children}
         </UserContext.Provider>
     )

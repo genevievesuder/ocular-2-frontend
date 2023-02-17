@@ -32,8 +32,6 @@ const Forum = () => {
   }
 
   return (
-    <>
-  { user ? (
     <div className="forum-container">
       <div className="forum-header">
         <span className="forum-welcome">o c u l a r &nbsp;</span>
@@ -56,13 +54,6 @@ const Forum = () => {
           {mappedandFilteredPosts}
         </div>
     </div>
-  ) : (
-    <div>
-      <p>Please sign in to access the user forum</p>
-      <Link to="/account">Login</Link>
-    </div>
-  )}
-</>
   )
 }
 

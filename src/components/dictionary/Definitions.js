@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext';
+// import { FavoriteContext } from '../../context/FavoriteContext';
 
 const Definitions = ({term, definition, id}) => {
 const {user, setUser} = useContext(UserContext)
+// const {handleDislike} = useContext(FavoriteContext)
 const likeIcon = user?.favorites.find(fave => fave.definition.id === id) ? true : false
 const [like, setLike] = useState(likeIcon)
 
@@ -26,7 +28,7 @@ const handleLike = () => {
           }))
       })
     } else {
-      res.json().then(errorObj => alert(errorObj.errors))
+      // res.json().then(errorObj => alert(errorObj.errors))
     }
   })
   .catch(err => alert(err));
