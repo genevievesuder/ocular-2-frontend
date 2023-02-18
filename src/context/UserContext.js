@@ -114,9 +114,9 @@ const editUser = (e, editedUserData, setEditedUserData) => {
         .then(messageObj => alert(messageObj.errors))
       } else {
         alert("Your profile has been updated successfully!");
-        navigate("/userhome")
         res.json()
-        .then(setUser(editedUserData))
+        .then((updatedUser) => setUser(updatedUser))
+        .then(() => navigate("/userhome"))
         setEditedUserData({
           username: "",
           about: ""

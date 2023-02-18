@@ -8,8 +8,8 @@ const Settings = ({icon, setIcon}) => {
     
 
     const [editedUserData, setEditedUserData] = useState({
-        username: "",
-        about: "",
+        username: user.username,
+        about: user.about,
         // education: "",
         // title: "",
         // field: ""
@@ -22,7 +22,7 @@ const Settings = ({icon, setIcon}) => {
         }))
       }
 
- 
+      if (!user) return <h1>...loading</h1>
   return (
     <div>
         <Icon icon={icon} setIcon={setIcon}/>
@@ -41,7 +41,6 @@ const Settings = ({icon, setIcon}) => {
                 name="username"
                 type="text"
                 value={editedUserData.username}
-                placeholder={user.username}
             ></input><br/>
             {/* <label>Edit education</label>
                 <input 
@@ -76,7 +75,6 @@ const Settings = ({icon, setIcon}) => {
                 onChange={handleChange}
                 name="about"
                 type="text"
-                value={editedUserData.about}
                 style={{ width: 200 }}
             /><br/>
                 <button>Update Profile</button>

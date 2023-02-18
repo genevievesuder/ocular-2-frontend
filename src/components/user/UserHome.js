@@ -10,13 +10,14 @@ const UserHome = ({icon, setIcon}) => {
   const {user, setUser} = useContext(UserContext)
   console.log(user)
   
-const mappedUserFaves = user.favorites.map((fave) => <UserFavorites {...fave} term={fave.term} definition={fave.definition} key={fave.id}/>); 
-
-const handleGoToSettings = () => {
-  navigate("/settings")
-}
-
-if (!user) return <h1>...loading</h1>
+  
+  const mappedUserFaves = user && user.favorites && user.favorites.map((fave) => <UserFavorites {...fave} term={fave.term} definition={fave.definition} key={fave.id}/>); 
+  
+  const handleGoToSettings = () => {
+    navigate("/settings")
+  }
+  
+  if (!user) return <h1>...loading</h1>
 return (
     <div className="user-container">
       <div className="welcome-user">
