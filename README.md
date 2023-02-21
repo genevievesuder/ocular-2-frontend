@@ -1,7 +1,7 @@
 # Ocular 
 An educational optometry resource app & community forum.
 
-Ocular provides a space for students, doctors and all who are interested in the field of optometry and eye health. Users can create profiles, view the ocular dictionary, save definitions as favorites, read & create posts in the community forum, learn about eye anatomy, and more.
+Ocular provides a space for students, doctors and all who are interested in the field of optometry and eye health. Users can create profiles, read medical terms and definitions in the ocular dictionary, save them as favorites to their profile, read & create posts in the community forum, learn about eye anatomy, and more.
 
 
 ![Homepage](public/homenav.png)
@@ -22,6 +22,8 @@ and [frontend](https://github.com/genevievesuder/ocular-2-frontend)
 * Start the frontend server by running the command ```npm start```
 <hr>
 
+## <b>Functionality:</b>
+
 ## Forum
 ![Forum](public/forumpost.png)
 * Edit or remove your existing posts
@@ -39,7 +41,7 @@ and [frontend](https://github.com/genevievesuder/ocular-2-frontend)
 <hr>
 
 ### Further Reading
-[View my blog post about using context in React](BLOGURL)
+[View my blog post about using context in React](https://medium.com/@genevievesuder/react-context-saving-web-developers-time-since-2018-37e9334a14b5)
 ### Creators:
 * [Genevieve Suder](https://github.com/genevievesuder)
 
