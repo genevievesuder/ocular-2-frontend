@@ -97,6 +97,21 @@ a:active {
   background-color: #b46c00;
 }
 
+.notify-container{
+  text-align: center;
+  background-color: #f1b458b8;
+}
+
+.notify{
+  font-size: 25px;
+  font-family: 'Quicksand', sans-serif;
+  color: rgb(255, 255, 255)
+}
+
+.not-found{
+ text-align: center;
+}
+
 .home-background{
   min-width: 100vw;
   min-height: 96vh;

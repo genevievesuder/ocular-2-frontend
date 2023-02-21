@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Posts = ({title, content, creator, image, id, setPosts}) => {
-    const {user} = useContext(UserContext)
+    const {user, setNotification} = useContext(UserContext)
     const [comments, setComments] = useState(false)
     const [editForm, setEditForm] = useState(false)
     // const [showProfiles, setShowProfiles] = useState(false)
@@ -36,7 +36,7 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
                 })
             } else {
                 r.json()
-                .then(err => alert(err))
+                .then(err => setNotification(err))
             }        
         }) 
     }
@@ -53,7 +53,7 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
            .then(res => {
             if (res.status !== 200) {
               res.json()
-              .then(messageObj => alert(messageObj.errors))
+              .then(messageObj => setNotification(messageObj.errors))
             } else {
               res.json()
               .then(editedPost => setPosts(currentPosts => {

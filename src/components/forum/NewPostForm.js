@@ -3,7 +3,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { UserContext } from '../../context/UserContext'
 
 export const NewPostForm = ({posts, setPosts, setPostForm}) => {
-    const {user} = useContext(UserContext)
+    const {setNotification} = useContext(UserContext)
     
     const [newPost, setNewPost] = useState({
         title: "",
@@ -23,7 +23,7 @@ export const NewPostForm = ({posts, setPosts, setPostForm}) => {
            .then(res => {
             if (res.status !== 201) {
               res.json()
-              .then(messageObj => alert(messageObj.errors))
+              .then(messageObj => setNotification(messageObj.errors))
             } else {
               setPostForm(false)
               res.json()

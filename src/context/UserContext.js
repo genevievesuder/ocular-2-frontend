@@ -7,7 +7,7 @@ const UserContext = createContext()
 const UserProvider = ({children}) => {
   const navigate = useNavigate()
   const [user, setUser] = useState(null);
-
+  const [notification, setNotification] = useState("")
 
   useEffect(() => {
       fetch("/authorized_user")
@@ -37,10 +37,12 @@ const UserProvider = ({children}) => {
             setUser(userObj)
           })
         } else {
-          resp.json().then(messageObj => alert(messageObj.error))
+          resp.json().then(messageObj => setNotification(messageObj.error))
         }
       })
   }
+
+///Alerted before, now setting notification!!!
 
   const handleLogout = () => {
   fetch("/logout", {
@@ -48,11 +50,12 @@ const UserProvider = ({children}) => {
   })
     .then((r) => { 
       if (r.status === 204) {
+        setNotification("Successfully logged out ")
         setUser(null)
         navigate("/")
       } else {
         r.json()
-        .then(err => alert(err))
+        .then(err => setNotification(err))
       }        
     }) 
   }
@@ -74,7 +77,7 @@ const UserProvider = ({children}) => {
             setUser(userObj)
             })
         } else {
-          response.json().then(messageObj => alert(messageObj.errors))
+          response.json().then(messageObj => setNotification(messageObj.errors))
         }
       })
       // .catch(error => alert(error)) Dont need this line, right?
@@ -87,11 +90,11 @@ const UserProvider = ({children}) => {
       .then((r) => { 
         if (r.status === 204) {
           setUser(null)
-          alert("Account deleted")
+          setNotification("Your account has been successfully deleted")
           navigate("/")
         } else {
           r.json()
-          .then(err => alert(err))
+          .then(err => setNotification(err))
         }        
       }) 
     }
@@ -111,7 +114,7 @@ const editUser = (e, editedUserData, setEditedUserData) => {
         res.json()
         .then(messageObj => alert(messageObj.errors))
       } else {
-        alert("Your profile has been updated successfully!");
+        setNotification("Your profile has been updated successfully!");
         res.json()
         .then((updatedUser) => setUser(updatedUser))
         .then(() => navigate("/userhome"))
@@ -127,7 +130,7 @@ const editUser = (e, editedUserData, setEditedUserData) => {
 }
 
     return (
-        <UserContext.Provider value={{user, setUser, handleLogin, handleLogout, handleSignup, handleAccountDeletion, editUser}}>
+        <UserContext.Provider value={{user, setUser, handleLogin, handleLogout, handleSignup, handleAccountDeletion, editUser, notification, setNotification}}>
             {children}
         </UserContext.Provider>
     )

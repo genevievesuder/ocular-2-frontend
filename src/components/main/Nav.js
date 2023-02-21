@@ -7,9 +7,10 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext';
 
+
 const Nav = () => {
     const navigate = useNavigate()
-    const {handleLogout, user} = useContext(UserContext)
+    const {handleLogout, user, setNotification} = useContext(UserContext)
     const [open, setOpen] = useState(false)
     
     function toggleDrawer(){
@@ -17,7 +18,7 @@ const Nav = () => {
     }
 
     const handlePleaseLogin = () => {
-        alert('Please login to access the Community Forum :)')
+        setNotification('Please login to access the Community Forum')
         navigate("/account")
     }
 
