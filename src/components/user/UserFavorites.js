@@ -1,12 +1,34 @@
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 import { UserContext } from '../../context/UserContext';
 
-const UserFavorites = ({term, definition}) => {
-const {user} = useContext(UserContext)
+const UserFavorites = ({definition, id}) => {
+const {user, setUser} = useContext(UserContext)
+
+const handleDislike = () => {
+  fetch(`/favorites/${id}`, {
+    method: "DELETE",
+  })
+    .then((r) => { 
+      if (r.status === 204) {
+        console.log(`${definition.term} unfavorited`)
+          setUser((currentUser) => (
+            {
+              ...currentUser, 
+              favorites: [
+                ...currentUser.favorites.filter(f => f.definition.id !== definition.id)
+              ]
+            }))
+      } else {
+        r.json()
+        .then(err => alert(err))
+      }        
+    }) 
+  }
+
 
   return (
     <div className="fave-card">
-        <span><button style={{border:"none", backgroundColor:"transparent"}}>✨</button>{definition.term}</span><br/>
+        <span><button onClick={handleDislike} style={{border:"none", backgroundColor:"transparent"}}>✨</button>{definition.term}</span><br/>
         <p>{definition.definition}</p>
     </div>
   )

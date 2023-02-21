@@ -5,6 +5,8 @@ import { useState, useEffect, useContext } from 'react'
 import { NewPostForm } from './NewPostForm'
 import { UserContext } from '../../context/UserContext';
 
+
+
 const Forum = () => {
   const {user} = useContext(UserContext)
   const [posts, setPosts] = useState([])
@@ -37,6 +39,7 @@ const Forum = () => {
         <span className="forum-welcome">o c u l a r &nbsp;</span>
         <span className="forum-welcome-2">forum</span><br/>
         <span className="forum-subheader">👁 a place to 👁<br/>share thoughts & ideas<br/>connect with like-minded people<br/>ask & answer questions</span>
+
           <div className="post-search-div">
           <input 
               className="post-search" 
@@ -47,8 +50,10 @@ const Forum = () => {
               onChange={handleSearch}
           />
           </div>
-          <button onClick={newPostForm} className="new-post">✎ Write something</button>
-          {postForm ? <NewPostForm posts={posts} setPosts={setPosts}/> : null}
+          <div className="write-something-div">
+          <button onClick={newPostForm} className="new-post">{postForm ? "Maybe later" : "✎ Write something"}</button>
+          </div>
+          {postForm ? <NewPostForm setPostForm={setPostForm} posts={posts} setPosts={setPosts}/> : null}
         </div>
         <div className="post-container">
           {mappedandFilteredPosts}

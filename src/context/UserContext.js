@@ -35,7 +35,6 @@ const UserProvider = ({children}) => {
         if (resp.ok) {
           resp.json().then(userObj => {
             setUser(userObj)
-            alert("User successfully logged in!")
           })
         } else {
           resp.json().then(messageObj => alert(messageObj.error))
@@ -50,7 +49,6 @@ const UserProvider = ({children}) => {
     .then((r) => { 
       if (r.status === 204) {
         setUser(null)
-        alert("Successfully logged out!")
         navigate("/")
       } else {
         r.json()
@@ -119,7 +117,10 @@ const editUser = (e, editedUserData, setEditedUserData) => {
         .then(() => navigate("/userhome"))
         setEditedUserData({
           username: "",
-          about: ""
+          about: "",
+          education: "",
+          title: "",
+          field: ""
         })
       }
   })

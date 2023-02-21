@@ -11,7 +11,7 @@ const UserHome = ({icon, setIcon}) => {
   console.log(user)
   
   
-  const mappedUserFaves = user && user.favorites && user.favorites.map((fave) => <UserFavorites {...fave} term={fave.term} definition={fave.definition} key={fave.id}/>); 
+  const mappedUserFaves = user && user.favorites && user.favorites.map((fave) => <UserFavorites {...fave} term={fave.term} definition={fave.definition} key={fave.id} id={fave.id}/>); 
   
   const handleGoToSettings = () => {
     navigate("/settings")
@@ -21,18 +21,16 @@ const UserHome = ({icon, setIcon}) => {
 return (
     <div className="user-container">
       <div className="welcome-user">
-        <h1>Welcome, {user.username}!</h1>
-        <button onClick={handleGoToSettings}>Account Settings</button>
-          </div>   
+        <span>Welcome, {user.username}!</span>
+        <button style={{float:'right', marginRight:'10px'}} className="buttons" onClick={handleGoToSettings}>Edit profile</button>
+          </div> 
+           <div className="profile-container">
             <div className="user-header">
-              <p className="username">{user.username}{icon}</p><br/>
+              <span className="username">{user.username}{icon}</span><br/>
             { user.education !== null ? (
               <div>
-                {/* <strong>School - </strong> */}
                 <span className="user-details">{user.education}</span>
-                {/* <strong>Title - </strong> */}
                 <span className="user-details">{user.title}</span>
-                {/* <strong>Field - </strong> */}
                 <span className="user-details">{user.field}</span><br/>
               </div>
             ) : null }
@@ -41,11 +39,16 @@ return (
                 <span>About</span>
                 <p className="about-me">{user.about}</p>
               </div>
-            </div>    
+             </div>   
+            </div>  
+            { user.favorites ? (
+            <>
               <h3>Favorites</h3>
           <div className="user-fave-box">
           {mappedUserFaves}
           </div>
+           </> ) : null }
+          
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import { Link, useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext';
@@ -22,9 +23,10 @@ const Nav = () => {
 
     return (
         <div>
-          <MenuIcon  onClick={toggleDrawer}/>
+          <MenuIcon onClick={toggleDrawer}/>
             <Drawer anchor='left' open={open} onClose={toggleDrawer}>
                 <nav className="nav">
+            <CloseIcon style={{float: "right", cursor: "pointer"}} onClick={toggleDrawer}/><br/>
                 <Link to="/" className="home-nav"><VisibilityOutlinedIcon/></Link><br/>
                 { user ? (
                 <>

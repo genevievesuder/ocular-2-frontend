@@ -32,30 +32,28 @@ const Dictionary = () => {
     <div className="dictionary-container">
       <div className="dictionary-header">
         <h1>optometry a-z</h1>
-      <div className="def-search-container">
-      <strong style={{ float: 'right'}}>Search by Keyword</strong><br/>
-        <input 
-          className="def-search" 
-          value={searchDefs}
-          placeholder="Search"
-          onChange={handleSearch}    
-        />
-      </div> 
+          <div className="def-search-container">
+            {/* <span style={{ float: 'right'}}>Search by Keyword</span><br/> */}
+              <input 
+                className="def-search" 
+                value={searchDefs}
+                placeholder="Search"
+                onChange={handleSearch}    
+              />
+          </div> 
       <div className="def-filter-container">
-        <label>
-          <strong style={{ float: 'left'}}>Filter by category</strong>
-          <select onChange={handleFilter} className="def-filter">
-            {/* <option value="">Filter by Category</option> */}
-            <option value="All">All</option>
-            <option value="Abnormalities">Abnormalities</option>
-            <option value="Anatomy">Anatomy</option>
-            <option value="Drugs">Drugs</option>
-            <option value="Exams">Exams</option>
-            <option value="Diseases and Syndromes">Diseases and Syndromes</option>
-            <option value="Infections & Irritations">Infections and Irritations</option>
-            <option value="Vision Impairments">Vision Impairments</option>
-          </select>
-        </label>
+          <span style={{ float: 'left'}}>Filter by category</span>
+            <select onChange={handleFilter} className="def-filter">
+              {/* <option value="">Filter by Category</option> */}
+              <option value="All">All</option>
+              <option value="Abnormalities">Abnormalities</option>
+              <option value="Anatomy">Anatomy</option>
+              <option value="Drugs">Drugs</option>
+              <option value="Exams">Exams</option>
+              <option value="Diseases and Syndromes">Diseases and Syndromes</option>
+              <option value="Infections & Irritations">Infections and Irritations</option>
+              <option value="Vision Impairments">Vision Impairments</option>
+            </select>
       </div>
 
         </div>

@@ -9,6 +9,8 @@ import Forum from './components/forum/Forum';
 import UserHome from './components/user/UserHome';
 import Settings from './components/user/Settings';
 import NotFound from './components/main/NotFound';
+import Profile from './components/forum/Profile';
+import AllProfiles from './components/forum/AllProfiles';
 
 function App() {
   const [icon, setIcon] = useState("")
@@ -23,6 +25,8 @@ function App() {
           <Route path="/dictionary" element={<Dictionary />} />
           <Route path="/anatomy" element={<Anatomy/>} />
           <Route path="/forum" element={<Forum/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/profiles/all" element={<AllProfiles/>} />
           <Route path="/userhome" element={<UserHome icon={icon} setIcon={setIcon}/>} />
           <Route path="/settings" element={<Settings icon={icon} setIcon={setIcon}/>} />
         </Routes>

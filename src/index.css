@@ -12,7 +12,7 @@ body {
 }
 
 .app{
-  background-color: rgb(250, 250, 247);
+  background-color: white;
 }
 
 .nav{
@@ -173,42 +173,108 @@ a:active {
   -khtml-border-radius: 99px;
 }
 
+.buttons{
+  display:inline-block;
+  padding:0.2em 1.45em;
+  margin:0.1em;
+  border:0.15em solid #CCCCCC;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Segoe UI','Roboto',sans-serif;
+  font-weight:400;
+  color:#000000;
+  background-color:#CCCCCC;
+  text-align:center;
+  position:relative;
+  border-radius: 5px;
+}
+
+.buttons:hover{
+  background-color:#f5eded;
+  border-color:#e4e4e4;
+  cursor: pointer;
+}
+
 .user-container{
   font-family: 'Quicksand', sans-serif;
   margin: auto;
-  min-width: 80vw;
-  max-width: 80vw;
+  min-width: 50vw;
+  max-width: 50vw;
   min-height: 100vh;
-  background-color: #edd0a4;
-}
-
-.welcome-user{
   background-color: white;
 }
 
+.welcome-user{
+  background-color: #96ceb4;
+  padding: 10px;
+}
+
+.profile-container{
+  border-radius: 15px;
+  background-color: #ffeead;
+  padding: 3px;
+  margin-top: 3vh;
+}
+
 .username{
+  margin: 15px;
+  display: inline-block;
   font-size: 40px;
+  border-radius: 45px;
+  padding: 20px;
+  background-color:#ffcc5c;
 }
 
 .user-details{
-  border: 5px solid black;
+  background-color: rgb(233, 165, 77);
+  font-weight: bold;
+  border: 4px solid rgb(233, 165, 77);
   border-radius: 25px;
   padding: 5px;
   margin-right: 3px;
   display: inline-block;
+  margin-bottom: 3px;
 }
 
 .about-me{
-  border: 3px solid black;
-  background-color: pink;
+  border-radius: 15px;
+  padding: 10px;
+  background-color:  #f5d9aca1;
 }
 
 .user-fave-box{
-  border: 5px solid black;
+  /* border: 5px solid black; */
 }
 
 .fave-card{
-  border: 5px solid black;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 3px;
+  padding: 3px;
+  border: 2px solid rgb(138, 184, 145);
+  background-color: #72a89a74;
+  border-radius: 25px;
+  background-image: linear-gradient(to bottom, #299a6d74, #c7b287);
+}
+
+.settings-container{
+  border-radius: 25px;
+  margin-top: 5vh;
+  font-family: 'Quicksand', sans-serif;
+  border: 50px solid rgb(255, 140, 0);
+  text-align: center;
+  align-items: center;
+  background-color: #ffe2b7;
+}
+
+.edit-user-form{
+  display: inline-block;
+  text-align: center;
+  width:400px;
+  padding:20px;
+}
+
+.edit-user-input{
+  margin:10px;
 }
 
 .anatomy-container{
@@ -216,7 +282,7 @@ a:active {
   min-width: 70vw;
   max-width: 70vw;
   min-height: 96vh;
-  background-color: #edd0a4;
+  background-color: white;
 }
 
 .anatomy-header{
@@ -227,37 +293,14 @@ a:active {
   padding-bottom: 3vh;
 }
 
-.anatomy-img-div{
-  position:absolute;
-  display: inline-block;
-  margin-left: 7vw;
-  margin-top: 5vh;
-  width: 30vw;
-  height: 30vw;
-  background-color: pink;
-  border: 5px solid white;
+.anatomy-img-container{
+  margin: 50px;
+  text-align: center;
 }
 
 .anatomy-img{
-  width: 100%;
-  height: 100%;
-  object-fit: stretch;
-  overflow: hidden;
-}
-
-.anatomy-desc-div{
-  position:absolute;
-  display: inline-block;
-  margin-left: 43vw;
-  margin-top: 5vh;
-  width: 21vw;
-  height: 30vw;
-  background-color: rgb(255, 255, 255);
-  border: 5px solid white;
-}
-
-.anatomy-desc-{
-
+  height: 60vh;
+  width: 85vh;
 }
 
 .forum-container{
@@ -265,20 +308,20 @@ a:active {
   min-width: 80vw;
   max-width: 80vw;
   min-height: 96vh;
-  background-color: #edd0a4;
+  background-color: white;
 }
 
 .forum-header{
+  padding-top: 5vh;
   margin: auto;
   min-width: 75vw;
   max-width: 75vw;
   min-height: 7vh;
-  background-color: #eda4c5;
+  background-color: #f2cd5d;
   text-align: center;
 }
 
 .forum-welcome{
-  top: 5px;
   font-family: 'Poller One', cursive;
   font-size: 35px;
   background-image: linear-gradient(60deg, #E21143, #FFB03A);
@@ -300,9 +343,19 @@ a:active {
 }
 
 .post-search-div{
-  background-color: #E21143;
   margin-top: 5vh;
+  background-color: #f7c44e;
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
+  padding-top: 2vh;
 }
+
+.write-something-div{
+  background-color: #f7c44e;
+  border-bottom-right-radius:20px;
+  border-bottom-left-radius: 20px;
+}
+
 .post-search{
   text-align: center;
   height: 3vh;
@@ -320,47 +373,88 @@ a:active {
   border-radius: 25px;
 }
 
+.new-post-container{
+  margin-top: 4vh;
+  border: 3px solid rgb(205, 255, 205);
+  background-color: white;
+  border-radius: 25px;
+  display: inline-block;
+  margin-bottom: 3vh;
+}
+
+.new-post-form{
+  padding: 10px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.edit-post-form{
+  width: 30%;
+  margin-top: 4vh;
+  border: 3px solid rgb(195, 233, 195);
+  background-color: white;
+  border-radius: 25px;
+  display: inline-block;
+  padding: 10px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.form-input{
+  margin: 2px;
+  width: 95%;
+  border-radius: 5px;
+}
+
 .post-container{
   /* display: inline-block; */
+  font-family: 'Quicksand', sans-serif;
   margin: auto;
   min-width: 75vw;
   max-width: 75vw;
   min-height: 80vh;
-  background-color: #eda4c5;
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0.533), rgba(255, 255, 0, 0.487));
   text-align: center;
 }
 
 .post-card{
   display: inline-block;
-  border: solid black 5px;
   margin-top: 3vh;
   background-color: white;
   min-height: 10vh;
   width: 70vw;
   text-align: center;
+  border-radius: 20px;
 }
+
 .post-header{
   width: 100%;
   text-align: center;
 }
 
 .post-author{
+  padding: 4px;
+  font-weight:bolder;
+  float: left;
+}
+
+/* .post-author:hover{
   float: left;
   border: 2px solid black;
-}
+  cursor: pointer;
+} */
 
 .post-title{
   /* display: inline-block; */
   text-align: center;
   font-size: 25px;
-  /* margin-right: 50px; */
-  border: 2px solid black;
+  margin-right: 50px;
 }
 
 .post-img-div{
   display: inline-block;
-  border: solid black 5px;
   margin-top: 3vh;
+  margin-bottom: 3vh;
   background-color: white;
   /* height: 60vh; */
   width: 100%;
@@ -369,22 +463,20 @@ a:active {
   /* overflow: hidden; */
 }
 
-
-
 .post-content{
   display: inline-block;
-  border: 2px solid black;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 .post-comments{
   margin-top:2px;
-  border: solid 2px black;
 }
 
 .dictionary-container{
   margin: auto;
   min-width: 70vw;
   max-width: 70vw;
+  background-color: white;
   /* min-height: 96vh; */
   /* background-color: #edd0a4; */
 }
@@ -393,57 +485,64 @@ a:active {
   font-family: 'Quicksand', sans-serif;
   min-width: 70vw;
   min-height: 8vh;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   padding-bottom: 3vh;
 }
 
 .def-search{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   float: right;
-  background-color: #f4dae0;
+  background-color: #ebece1;
   min-height: 4vh;
   max-width: 20vw;
   min-width: 35vw;
+  border-radius: 5px;
+  margin-top: 4.65vh;
 }
 
 .def-filter{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #f0dadf;
+  background-color: #ebece1;
   min-height: 4vh;
   max-width: 20vw;
   min-width: 35vw;
+  border-radius: 5px;
+  margin-top: 2vh;
 }
 
 .term{
   float: left;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  /* display: inline-block; */
-  background-color: rgba(230, 83, 83, 0);
   height: 16vh;
   width: 25vw;
-  border: solid 3px rgba(23, 12, 12, 0.368);
-  /* padding: 5px; */
+  border: 2px solid white;
+  background-color: darkseagreen;
+  border-radius: 25px;
+  line-height: 80px;
+  font-weight: bold;
 }
 
 .definition{
   float: right;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  /* display: inline-block; */
-  background-color: rgba(150, 185, 231, 0);
   height: 16vh;
   width: 45vw;
-  border: solid 3px rgba(50, 37, 37, 0.368);
-  /* padding: 5px; */
-  
+  border: 2px solid white;
+  background-color: darkseagreen;
+  border-radius: 25px;
 }
 
 .favorite{
+  margin-top: 4px;
+  margin-left: 2px;
   position: absolute;
   background-color: transparent;
   border: none;
 }
 
 .un-favorite{
+  margin-top: 4px;
+  margin-left: 2px;
   filter: invert(50%);
   position: absolute;
   background-color: transparent;

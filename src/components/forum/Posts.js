@@ -1,17 +1,23 @@
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { useNavigate } from 'react-router-dom';
+// import Profile from './Profile'
+// import AllProfiles from './AllProfiles';
 
 
 const Posts = ({title, content, creator, image, id, setPosts}) => {
     const {user} = useContext(UserContext)
     const [comments, setComments] = useState(false)
     const [editForm, setEditForm] = useState(false)
+    // const [showProfiles, setShowProfiles] = useState(false)
 
+    const navigate = useNavigate();
+    
     const [editedPost, setEditedPost] = useState({
-        title: "",
-        content: ""
-        // image:""
+        title: title,
+        content: content,
+        image:""
     })
 
     const showComments = () => {
@@ -49,7 +55,6 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
               res.json()
               .then(messageObj => alert(messageObj.errors))
             } else {
-              alert("Post updated successfully");
               res.json()
               .then(editedPost => setPosts(currentPosts => {
                 const index = currentPosts.findIndex(post => post.id === editedPost.id)
@@ -57,8 +62,8 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
               setEditForm(false)
               setEditedPost({
                 title: "",
-                content: ""
-                // image:""
+                content: "",
+                image:""
               })
             }
            })
@@ -76,6 +81,16 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
       }
     if (!user) return <h1>...loading</h1>
   return (
+    <>
+    {/* <div>
+        <button onClick={() => navigate("/profiles/all")}>View Profiles</button>
+    { showProfiles ? (
+        <>
+        <Profile />
+        <AllProfiles />
+        </>
+    ) : null }
+    </div> */}
       <div className="post-card">
         <div className="post-header">
             <div>
@@ -83,21 +98,14 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
             </div>
         {creator === user.username ? (  
             <>
-            <button onClick={handleSetEditForm} style={{ float: 'right', lineHeight : 1}}>edit</button>
-            <button onClick={deletePost} style={{ float: 'right', lineHeight : 1}}>remove</button>
+            <button className="buttons" onClick={handleSetEditForm} style={{ float: 'right',marginRight: "5px", marginTop: "5px", lineHeight : 1}}>edit</button>
+            <button className="buttons" onClick={deletePost} style={{ float: 'right', marginRight: "3px", marginTop: "5px", lineHeight : 1}}>remove</button>
             </>
         ): null}
     { editForm? (
         <div>
         <form className="edit-post-form" onSubmit={editPost}>
-            {/* <input 
-                onChange={handleChange}
-                name=""
-                type=""
-                value=""
-                placeholder=""
-            ></input><br/> */}
-                <input 
+                <input className="form-input"
                 onChange={handleChange}
                 name="title"
                 type="text"
@@ -105,8 +113,9 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
                 placeholder="Title"
             ></input><br/>
             <TextareaAutosize
+                className="form-input"
                 aria-label="empty textarea"
-                minRows={3}
+                minRows={5}
                 maxRows={5}
                 placeholder="Start writing..."
                 onChange={handleChange}
@@ -115,14 +124,22 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
                 value={editedPost.content}
                 style={{ width: 200 }}
             /><br/>
-                <button>Publish</button>
+              <input 
+              className="form-input"
+              onChange={handleChange}
+              name="image"
+              type="text"
+              value={editedPost.image}
+              placeholder="Optional image url"
+          ></input><br/>
+                <button className="buttons">Update post</button>
         </form>
         </div> 
     ) : null}
-
            <br/> 
            <div>
                <span className="post-title">{title}</span>
+               <hr></hr>
            </div>
         </div>
         <div>
@@ -135,16 +152,18 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
             <img style={{ textAlign: "center", maxWidth: "50%", maxHeight: "100%" }}src={image} alt={"medicalimage"} />
         </div>
         ) : ( null )}
-        <button onClick={showComments}>
+        <button className="buttons" onClick={showComments}>
         {comments ? "Hide thread" : "View thread"}
         </button>
         {comments ? (
         <div className="post-comments">
+          <hr></hr>
             <p>This is a comment on a post!</p>
-            <small>-</small>
+            <small>-user</small>
         </div>
         ) : null}
       </div>
+      </>
   )
 }
 
