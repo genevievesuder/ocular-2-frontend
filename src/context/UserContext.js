@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useCallback } from 'react';
 
 const UserContext = createContext()
 
@@ -9,17 +9,20 @@ const UserProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [notification, setNotification] = useState("")
 
+  const fetchUser = useCallback(() => {
+    fetch("/authorized_user")
+    .then((res) => {
+        if (res.ok) {
+            res.json()
+            .then((user) => {
+                setUser(user);
+            });
+        }
+    })}, [])
+
   useEffect(() => {
-      fetch("/authorized_user")
-      .then((res) => {
-          if (res.ok) {
-              res.json()
-              .then((user) => {
-                  setUser(user);
-              });
-          }
-      })
-  }, []);
+    fetchUser()
+  }, [fetchUser]);
   
   const handleLogin = (e, formData) => {
       e.preventDefault()
