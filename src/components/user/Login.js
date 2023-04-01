@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';

@@ -5,7 +5,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import Icon from './Icon'
 
 const Settings = ({icon, setIcon}) => {
-    const {user, setUser, handleAccountDeletion, editUser} = useContext(UserContext)
+    const {user, handleAccountDeletion, editUser} = useContext(UserContext)
     const [accountDelete, showAccountDelete] = useState(false)
     const navigate = useNavigate();
     

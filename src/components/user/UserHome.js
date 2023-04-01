@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import UserFavorites from './UserFavorites';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserHome = ({icon, setIcon}) => {
   const navigate = useNavigate()
-  const {user, setUser} = useContext(UserContext)
+  const {user} = useContext(UserContext)
   console.log(user)
   
   

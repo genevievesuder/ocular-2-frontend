@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import { UserContext } from '../../context/UserContext';
 
 const UserFavorites = ({definition, id}) => {
-const {user, setUser} = useContext(UserContext)
+const {setUser} = useContext(UserContext)
 
 const handleDislike = () => {
   fetch(`/favorites/${id}`, {

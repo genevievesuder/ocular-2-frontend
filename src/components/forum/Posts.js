@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-import { useNavigate } from 'react-router-dom';
 // import Profile from './Profile'
 // import AllProfiles from './AllProfiles';
 
@@ -12,8 +11,6 @@ const Posts = ({title, content, creator, image, id, setPosts}) => {
     const [editForm, setEditForm] = useState(false)
     // const [showProfiles, setShowProfiles] = useState(false)
 
-    const navigate = useNavigate();
-    
     const [editedPost, setEditedPost] = useState({
         title: title,
         content: content,

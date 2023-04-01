@@ -1,6 +1,5 @@
 import Posts from './Posts'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react'
 import { NewPostForm } from './NewPostForm'
 import { UserContext } from '../../context/UserContext';
@@ -8,7 +7,6 @@ import { UserContext } from '../../context/UserContext';
 
 
 const Forum = () => {
-  const {user} = useContext(UserContext)
   const [posts, setPosts] = useState([])
   const [postForm, setPostForm] = useState(false)
   const [searchPosts, setSearchPosts] = useState("")
