@@ -2,7 +2,7 @@
   "name": "ocular-2-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://ocular-azure.postgres.database.azure.com",
+  "proxy": "https://ocular.azurewebsites.net",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
